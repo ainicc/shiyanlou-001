@@ -1,0 +1,37 @@
+GitHub
+想要使用GitHub中的远程仓库克隆到本地pc，并且本地的一些操作文件保存到GitHub中需要以下操作（使用两种协议ssh和http）
+
+第一：使用SSH协议进行克隆,
+          1.   先对Git工具进行配置信息  
+                配置用户名 git  config --global user.name "用户名"
+                配置用户邮编 git config --global user.email "邮编地址"
+          2. 先设置ssh公钥,   ssh-keygen生成一个公钥和一个私钥文件
+              这两个文件默认保存在~/.ssh目录中,进入目录查看带后缀的文件
+             为公钥文件,将其复制后添加到GitHub中的ssh中(此时其还是灰的)
+             因为个人pc机还未与其关联 。
+         3.  将远程仓库克隆到本地  把需要克隆的远程仓库的ssh key复制
+             执行 git clone "ssh 的key"，(此时仓库就被克隆到个人pc机了,
+            GitHub中的钥匙变成了绿的说明已经和个人PC机绑定
+第二：使用HTTP协议进行克隆,
+         1.   先对Git工具进行配置信息  
+                配置用户名 git  config --global user.name "用户名"
+                配置用户邮编 git config --global user.email "邮编地址"
+         2.   将远程仓库克隆到本地  把需要克隆的远程仓库的ssh key复制
+              执行 git clone "http 的key"（此时远程仓库就被复制到个人机）
+
+
+两种方式各有各的优点；
+        当克隆完之后对文件进行更改后（注意每一次添加新的文件后都要要利用 git add把文件加入到文件库，否则其无法同步到远程仓库）
+        1.先进行提交操作  git commit -m '备注'   (备注必须写)
+        2.在推送同步到远程仓库 git push -u origin master
+                  *如果用ssh协议则无需输入密码和用户名
+                  *如果用http协议则每次都需要输入用户名和密码
+
+
+
+对克隆的远程库里的文件进行增加  删除  还有撤销操作
+
+            1 .把文件添加到索引库  git add 文件名
+            2. 把文件从仓库中删除  git rm 文件名
+            3. 把对仓库的改动进行撤销 git reset --hard HEAD
+                 （如果改动后提交了就无法在进行撤销）
