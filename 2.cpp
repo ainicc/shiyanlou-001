@@ -888,4 +888,202 @@ int cl(int n,int a)
 	
 
 
+//树形结构之二叉树
+//二叉树有满二叉树和完全二叉树(满二叉树一定是完全二叉树,完全二叉树不一定是满二叉树)
+//完全二叉树的特性
+//           1.左子树的深度减去右子树的深度等于0或1,（也就是叶子结点要么在最底层，要么在次低层）
+//           2.假设完全二叉树的深度为K，结点数为n     则n大于（2的K-1次幂）-1，小于(2的k次幂)-1.
+//           3.完全二叉树的深度为(log以2为底 n为对数)+1        n是结点数
+//           
+//二叉树的顺序存储结构(要先把二叉树补成完全二叉树)
 
+//用一个数组来存二叉树各个节点的序号
+//在用一个节点来存结点中的数据
+/*
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a[100],b[100],n;
+	cout<<"请输入二叉树有几个结点:";
+	cin>>n;
+	cout<<"请输入二叉树的所有结点的编号:";
+	for(int i=0;i<=n-1;i++)
+		cin>>a[i];
+	cout<<"请根据各个结点的顺序依次输入各个节点的数据:";
+	for(int i=0;i<=n-1;i++)
+		cin>>b[a[i]];
+	cout<<"二叉树各个结点的序号以及其对应的结点的值为"<<endl;
+	for(int i=0;i<=n-1;i++)
+		cout<<a[i]<<"："<<b[a[i]]<<"  ";
+	return 0;
+}
+*/
+//二叉树的链式存储结构(二叉链表，三叉链表)
+
+
+//二叉链表
+//二叉链表有两个指针域，分别指向左孩子和右孩子
+//利用先序建立算法(递归思想)---类似于先序遍历算法
+/*
+#include <iostream>
+using namespace std;
+struct tree
+{
+	tree *left;
+	int n;
+	tree *right;
+};
+
+void make_tree(tree **head);
+void first_ergodic(tree *head);
+void among_ergodic(tree *head);
+void finally1_ergodic(tree *head);
+
+int main()
+{
+	tree head;
+	int n;
+	cout<<"请输入根结点的值:";
+	cin>>head.n;
+	cout<<"请输入此结点的左子树是否为空(空:0,不空:1):";
+	cin>>n;
+	if(n==0)
+		(head).left=NULL;
+	else if(n==1)
+		make_tree(&((head).left));
+	cout<<"请输入此结点右子树是否为空(空:0,不空:1)";
+	cin>>n;
+	if(n==0)
+		(head).right=NULL;
+	else if(n==1)
+		make_tree(&(head).right);
+	tree *p1=&head;
+	//        first_ergodic(p1);     先序遍历算法
+	//        among_ergodic(p1);     中序遍历算法
+	//        finally1_ergodic(p1);  后序遍历算法
+	return 0;
+}
+void make_tree(tree **head)
+{
+	(*head)=new tree;
+	cout<<"请输入此结点的值:";
+	cin>>(*head)->n;
+	int n;
+	cout<<"请输入此结点的左孩子是否为空(空:0,不空:1):";
+	cin>>n;
+	if(n==0)
+		(*head)->left=NULL;
+	else if(n==1)
+		make_tree(&((*head)->left));
+	cout<<"请输入此结点右孩子是否为空(空:0,不空:1)";
+	cin>>n;
+	if(n==0)
+		(*head)->right=NULL;
+	else if(n==1)
+		make_tree(&(*head)->right);
+}
+
+*/
+//三叉链表
+//三叉链表比二叉链表多了一个指针域，指向上层结点
+/*
+#include <iostream>
+using namespace std;
+struct tree
+{
+	tree *front;
+	tree *left;
+	tree *right;
+	int n;
+};
+
+
+int main()
+{
+	tree head;
+	int n;
+	head.front=NULL;
+	cout<<"请输入根结点的值:";
+	cin>>head.n;
+	cout<<"请输入此结点的左子树是否为空(空:0,不空:1):";
+	cin>>n;
+	if(n==0)
+		(head).left=NULL;
+	else if(n==1)
+		make_tree(&((head).left),&head);
+	cout<<"请输入此结点右子树是否为空(空:0,不空:1)";
+	cin>>n;
+	if(n==0)
+		(head).right=NULL;
+	else if(n==1)
+		make_tree(&(head).right,&head);
+	return 0;
+}
+void make_tree(tree **head,tree *p1)
+{
+	(*head)=new tree;
+	(*head)->front=p1;
+	cout<<"请输入此结点的值:";
+	cin>>(*head)->n;
+	int n;
+	cout<<"请输入此结点的左孩子是否为空(空:0,不空:1):";
+	cin>>n;
+	if(n==0)
+		(*head)->left=NULL;
+	else if(n==1)
+		make_tree(&((*head)->left),*head);
+	cout<<"请输入此结点右孩子是否为空(空:0,不空:1)";
+	cin>>n;
+	if(n==0)
+		(*head)->right=NULL;
+	else if(n==1)
+		make_tree(&(*head)->right,*head);
+}
+*/
+
+
+//二叉树的遍历算法
+//              1.递归遍历(先序遍历，中序遍历，后序遍历)
+//              2.层次遍历
+//              3.非递归遍历
+
+
+
+
+//二叉树的递归遍历之先序遍历
+//(先序是相对于访问左右孩子而言的,即先访问根结点的值，在访问左右孩子)
+/*
+void first_ergodic(tree *head)
+{
+	cout<<"此结点的值为:"<<head->n<<endl;
+	if(head->left!=NULL)
+		first_ergodic(head->left);
+	if(head->right!=NULL)
+		first_ergodic(head->right);
+}
+*/
+//二叉树的递归遍历之中序遍历
+//(中序遍历即先访问左孩子，在访问结点的值，在访问右孩子)
+/*
+void among_ergodic(tree *head)
+{
+	if(head->left!=NULL)
+		among_ergodic(head->left);
+	cout<<"此结点的值为:"<<head->n<<endl;
+	if(head->right!=NULL)
+		among_ergodic(head->right);
+}
+*/
+//二叉树的遍历算法之后序遍历
+//(后序遍历即先访问左子树在访问右子树，最后在访问结点的值)
+/*
+void finally1_ergodic(tree *head)
+{
+	if(head->left!=NULL)
+		finally1_ergodic(head->left);
+	if(head->right!=NULL)
+		finally1_ergodic(head->right);
+	cout<<"此结点的值为:"<<head->n<<endl;
+}
+*/
