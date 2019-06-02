@@ -1079,3 +1079,36 @@ void finally1_ergodic(tree *head)
 	cout<<"此结点的值为:"<<head->n<<endl;
 }
 */
+//二叉树的层次遍历
+//利用了队列先进先出，后进后出的特性
+//队列的这种特点可以把每一个结点的地址按照层次顺序保存起来
+/*
+void gradation_tree(tree *head)
+{
+	tree a[100];
+	int hight=0,low;
+	low=0-1;
+	if(head==NULL)
+		cout<<"此二叉树为空树!"<<endl;
+	else
+	{
+		a[hight]=*head;
+
+		while(low!=hight)
+		{
+			low++;
+			cout<<"此结点的值为:"<<a[low].n<<endl;
+			if(a[low].left!=NULL)
+			{
+				hight++;
+				a[hight]=*a[low].left;
+			}
+			if(a[low].right!=NULL)
+			{
+				hight++;
+				a[hight]=*a[low].right;
+			}
+		}
+	}
+}
+*/
